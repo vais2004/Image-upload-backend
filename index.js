@@ -37,7 +37,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
     });
     //save to mongodb
     const newImage = new ImageModel({ imageUrl: result.secure_url });
-    await newImage.save;
+    await newImage.save();
 
     res.status(200).json({
       message: "Image uploaded successfully",
@@ -48,4 +48,9 @@ app.post("/upload", upload.single("image"), async (req, res) => {
       .status(500)
       .json({ message: "Error occure while uploading the image", error });
   }
+});
+
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
